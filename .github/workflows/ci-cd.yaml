@@ -59,7 +59,7 @@ jobs:
       with: 
         push: true
         tags: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/to-do:${{ github.sha}}
-        file: ./dockerfile.
+        file: ./dockerfile
 
   deploy:
     needs: build
