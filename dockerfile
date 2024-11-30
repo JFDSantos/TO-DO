@@ -1,24 +1,24 @@
-# Use uma imagem oficial do Python
-FROM python:3.10-slim
+# Usar uma imagem oficial do Python como base
+FROM python:3.10-slim AS base
 
-# Defina o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Copie os arquivos do projeto para o contêiner
-COPY . /app
-
-# Atualize o sistema e instale as dependências do sistema necessárias
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpq-dev \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Instale as dependências do Python
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
-
-# Exponha a porta para a aplicação FastAPI (geralmente 8000 por padrão no FastAPI)
 EXPOSE 8000
 
-# Comando para rodar a aplicação FastAPI com Uvicorn
-CMD ["uvicorn", "main:app", "--reload"]
+FROM python:3.10-slim AS build
+
+WORKDIR /src
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+FROM base AS final
+
+COPY --from=build /src /app
+
+ENV PYTHONUNBUFFERED 1
+
+ENTRYPOINT ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
