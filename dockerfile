@@ -18,7 +18,5 @@ RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
 # Exponha a porta padrão do FastAPI
-EXPOSE 8000
+EXPOSE 8080
 
-# Comando para iniciar o servidor FastAPI com Uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
