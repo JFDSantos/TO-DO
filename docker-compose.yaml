@@ -27,7 +27,7 @@ services:
     container_name: todo_app
     restart: always
     environment:
-      DATABASE_URL: "postgresql+psycopg://todo_user:todo_password@todo_postgres:5432/todo_db"
+      DATABASE_URL: "postgresql+psycopg://jeferson:Qwer1234@todo-postgres.postgres.database.azure.com:5432/postgres"
       REDIS_URL: "redis://todo_redis:6379"
     ports:
       - "80:80"
