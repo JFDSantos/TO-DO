@@ -66,7 +66,7 @@ jobs:
 
       # Azure CLI setup
       - name: Set up Azure CLI
-        uses: azure/setup-azure-cli@v1
+        uses: azure/cli@v1
 
       # Azure login using service principal credentials
       - name: Login to Azure
