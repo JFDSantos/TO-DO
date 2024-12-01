@@ -9,7 +9,7 @@ REDIS_HOST = parsed_redis_url.hostname or "localhost"
 REDIS_PORT = parsed_redis_url.port or 6379
 
 def get_redis():
-    return redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, decode_responses=True)
+    return redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, decode_responses=True, ssl=True)
 
 
 def store_token_in_cache(username: str, token: str, expiration: int = 3600):
