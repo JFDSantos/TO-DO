@@ -22,7 +22,7 @@ async def create_task(
     current_user: dict = Depends(get_current_user)
 ):
     try:
-        new_task = Task(**task.dict(), user_id=current_user.id, created_at=datetime.now(timezone.utc))
+        new_task = Task(**task.model_dump(), user_id=current_user.id, created_at=datetime.now(timezone.utc))
         db.add(new_task)
         await db.commit()
         await db.refresh(new_task)

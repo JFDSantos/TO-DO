@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from datetime import datetime
 
 class UserCreate(BaseModel):
     username: str
@@ -9,7 +10,6 @@ class TaskBase(BaseModel):
     title: str
     description: Optional[str] = None
     status: bool = False  
-    user_id: int 
 
     class Config:
         orm_mode = True 
@@ -27,8 +27,8 @@ class TaskUpdate(TaskBase):
 
 class TaskResponse(TaskBase):
     id: int  
-    created_at: str  
-    updated_at: str 
+    created_at: datetime  
+    updated_at: Optional[datetime] = None
 
     class Config:
-        orm_mode = True  
+        orm_mode = True

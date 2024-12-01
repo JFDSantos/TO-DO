@@ -17,6 +17,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+name_logged: str = ""
 
 def get_db():
     db = SessionLocal()
@@ -52,6 +53,8 @@ async def login(
     payload = {
             'sub': user.username
         }
+    
+    name_logged = user.username
 
     access_token = create_access_token(payload)
     
@@ -75,7 +78,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
     )
 
     try:
-        payload = await get_token_from_cache(username)
+        payload = await get_token_from_cache(name_logged)
         if payload is None or payload != token:       
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username: str = payload.get("sub")
