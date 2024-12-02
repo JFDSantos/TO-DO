@@ -4,7 +4,10 @@ import platform
 import asyncio
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL","postgresql+psycopg://todo_user:todo_password@localhost:5432/todo_db")
+
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL is not set or is invalid.")
 
 engine = create_async_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
