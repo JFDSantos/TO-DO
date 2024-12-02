@@ -13,7 +13,7 @@ Este projeto é uma API para gerenciar uma aplicação de tarefas (To-Do), const
 - **Docker Compose**: Ferramenta para orquestrar múltiplos containers (PostgreSQL, Redis e a aplicação) em um único comando, simplificando a configuração do ambiente.
 - **Azure**: Plataforma de nuvem onde o ambiente de produção é configurado para escalar e gerenciar os recursos de forma eficiente.
     - **Azure App Service**: Plataforma oferece diversas funcionalidades para hospedar e gerenciar seus aplicativos de forma escalável e segura.
-    - **Azure App Service**:Plataforma oferece uma instância do Redis que é gerenciada pelo Azure, eliminando a necessidade de configurar, gerenciar e manter o Redis manualmente.
+    - **Azure Redis Cache**:Plataforma oferece uma instância do Redis que é gerenciada pelo Azure, eliminando a necessidade de configurar, gerenciar e manter o Redis manualmente.
     - **Azure Database for PostgreSQL Flexible Server**: O Flexible Server é uma das opções de banco de dados gerenciado do Azure, projetada para fornecer flexibilidade e controle sobre a configuração do banco de dados, com alta disponibilidade e facilidade de gerenciamento.
 
 ## Workflow de Desenvolvimento e Produção
