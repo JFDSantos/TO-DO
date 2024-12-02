@@ -17,9 +17,7 @@ class TaskBase(BaseModel):
 class TaskCreate(TaskBase):
     pass 
 
-class TaskUpdate(TaskBase):
-    title: str
-    description: Optional[str] = None
+class TaskUpdate(BaseModel):
     status: bool = False
     
     class Config:
