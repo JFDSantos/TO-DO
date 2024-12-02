@@ -9,7 +9,7 @@ parsed_redis_url = urlparse(REDIS_URL)
 REDIS_HOST = parsed_redis_url.hostname or "localhost"
 REDIS_PORT = parsed_redis_url.port or 6379
 
-environment = os.getenv("ENVIRONMENT")
+environment = os.getenv("ENVIRONMENT", "local")
 is_local = environment == "local"
 
 def get_redis():
